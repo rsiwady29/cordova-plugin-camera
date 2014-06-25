@@ -259,18 +259,10 @@ static NSSet* org_apache_cordova_validArrowDirections;
     self.hasPendingOperation = NO;
 }
 
-- (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
-{
-    CDVCameraPicker* cameraPicker = (CDVCameraPicker*)picker;
-
-    if (cameraPicker.popoverSupported && (cameraPicker.popoverController != nil)) {
-        [cameraPicker.popoverController dismissPopoverAnimated:YES];
-        cameraPicker.popoverController.delegate = nil;
-        cameraPicker.popoverController = nil;
-    } else {
-        [[cameraPicker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-    }
-
+/**
+ This method is only called once the Camera modal is dismissed, or when the popover is dismissed.
+ */
+-(void)handleCDVCameraPicker:(CDVCameraPicker*)cameraPicker withInfo:(NSDictionary*)info{
     CDVPluginResult* result = nil;
 
     NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
@@ -375,6 +367,23 @@ static NSSet* org_apache_cordova_validArrowDirections;
 
     self.hasPendingOperation = NO;
     self.pickerController = nil;
+}
+
+- (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
+{
+    CDVCameraPicker* cameraPicker = (CDVCameraPicker*)picker;
+
+    if (cameraPicker.popoverSupported && (cameraPicker.popoverController != nil)) {
+        [cameraPicker.popoverController dismissPopoverAnimated:YES];
+        cameraPicker.popoverController.delegate = nil;
+        cameraPicker.popoverController = nil;
+        
+        [self handleCDVCameraPicker:cameraPicker withInfo:info];
+    } else {
+        [[cameraPicker presentingViewController] dismissViewControllerAnimated:YES completion:^{
+            [self handleCDVCameraPicker:cameraPicker withInfo:info];
+        }];
+    }
 }
 
 // older api calls newer didFinishPickingMediaWithInfo
