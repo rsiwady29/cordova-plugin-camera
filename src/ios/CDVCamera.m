@@ -380,7 +380,7 @@ static NSSet* org_apache_cordova_validArrowDirections;
         
         [self handleCDVCameraPicker:cameraPicker withInfo:info];
     } else {
-        [[cameraPicker presentingViewController] dismissViewControllerAnimated:YES completion:^{
+        [self.viewController dismissViewControllerAnimated:YES completion:^{
             [self handleCDVCameraPicker:cameraPicker withInfo:info];
         }];
     }
@@ -398,7 +398,7 @@ static NSSet* org_apache_cordova_validArrowDirections;
 {
     CDVCameraPicker* cameraPicker = (CDVCameraPicker*)picker;
 
-    [[cameraPicker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 
     CDVPluginResult* result;
     if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
