@@ -150,3 +150,6 @@
 
 ### 0.3.2-ag-p1 (Sep 30, 2014)
 * Handle camera callback only after the camera has fully dismissed, to prevent problems when using modal views in Steroids.
+
+### r0.3.2-ag-p1 (Sep 30, 2014)
+* call dismissViewControllerAnimated:YES on the original controller (self.viewController) that opened the camera controller instead of using the presentingViewController property.
