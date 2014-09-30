@@ -7,9 +7,9 @@
 # to you under the Apache License, Version 2.0 (the
 # "License"); you may not use this file except in compliance
 # with the License.  You may obtain a copy of the License at
-# 
+#
 # http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing,
 # software distributed under the License is distributed on an
 # "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -147,3 +147,6 @@
 * Renamed test dir, added nested plugin.xml
 * CB-6958 added manual tests
 * CB-6958 Port camera tests to plugin-test-framework
+
+### 0.3.2-ag-p1 (Sep 30, 2014)
+* Handle camera callback only after the camera has fully dismissed, to prevent problems when using modal views in Steroids.
