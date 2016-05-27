@@ -17,8 +17,8 @@
  under the License.
  */
 
-#import "CDVJpegHeaderWriter.h"
-#include "CDVExif.h"
+#import "_CDVJpegHeaderWriter.h"
+#include "_CDVExif.h"
 
 /* macros for tag info shorthand:
    tagno        : tag number
@@ -30,15 +30,15 @@
 #define TAGINF(tagno, typecode, components) [NSArray arrayWithObjects: tagno, typecode, components, nil]
 #define TAGINF_W_APPEND(tagno, typecode, components, appendString) [NSArray arrayWithObjects: tagno, typecode, components, appendString, nil]
 
-const uint mJpegId = 0xffd8; // JPEG format marker
-const uint mExifMarker = 0xffe1; // APP1 jpeg header marker
-const uint mExif = 0x45786966; // ASCII 'Exif', first characters of valid exif header after size
-const uint mMotorallaByteAlign = 0x4d4d; // 'MM', motorola byte align, msb first or 'sane'
-const uint mIntelByteAlgin = 0x4949; // 'II', Intel byte align, lsb first or 'batshit crazy reverso world'
-const uint mTiffLength = 0x2a; // after byte align bits, next to bits are 0x002a(MM) or 0x2a00(II), tiff version number
+//const uint mJpegId = 0xffd8; // JPEG format marker
+//const uint mExifMarker = 0xffe1; // APP1 jpeg header marker
+//const uint mExif = 0x45786966; // ASCII 'Exif', first characters of valid exif header after size
+//const uint mMotorallaByteAlign = 0x4d4d; // 'MM', motorola byte align, msb first or 'sane'
+//const uint mIntelByteAlgin = 0x4949; // 'II', Intel byte align, lsb first or 'batshit crazy reverso world'
+//const uint mTiffLength = 0x2a; // after byte align bits, next to bits are 0x002a(MM) or 0x2a00(II), tiff version number
 
 
-@implementation CDVJpegHeaderWriter
+@implementation _CDVJpegHeaderWriter
 
 - (id) init {    
     self = [super init];
@@ -103,7 +103,7 @@ const uint mTiffLength = 0x2a; // after byte align bits, next to bits are 0x002a
 
 - (NSData*) spliceExifBlockIntoJpeg: (NSData*) jpegdata withExifBlock: (NSString*) exifstr {
     
-    CDVJpegHeaderWriter * exifWriter = [[CDVJpegHeaderWriter alloc] init];
+    _CDVJpegHeaderWriter * exifWriter = [[_CDVJpegHeaderWriter alloc] init];
     
     NSMutableData * exifdata = [NSMutableData dataWithCapacity: [exifstr length]/2];
     int idx;

@@ -17,9 +17,9 @@
  under the License.
  */
 
-#import "CDVCamera.h"
-#import "CDVJpegHeaderWriter.h"
-#import "UIImage+CropScaleOrientation.h"
+#import "_CDVCamera.h"
+#import "_CDVJpegHeaderWriter.h"
+#import "_UIImage+CropScaleOrientation.h"
 #import <ImageIO/CGImageProperties.h>
 #import <AssetsLibrary/ALAssetRepresentation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -57,11 +57,11 @@ static NSString* toBase64(NSData* data) {
     }
 }
 
-@implementation CDVPictureOptions
+@implementation _CDVPictureOptions
 
 + (instancetype) createFromTakePictureArguments:(CDVInvokedUrlCommand*)command
 {
-    CDVPictureOptions* pictureOptions = [[CDVPictureOptions alloc] init];
+    _CDVPictureOptions* pictureOptions = [[_CDVPictureOptions alloc] init];
 
     pictureOptions.quality = [command argumentAtIndex:0 withDefault:@(50)];
     pictureOptions.destinationType = [[command argumentAtIndex:1 withDefault:@(DestinationTypeFileUri)] unsignedIntegerValue];
@@ -91,13 +91,13 @@ static NSString* toBase64(NSData* data) {
 @end
 
 
-@interface CDVCamera ()
+@interface _CDVCamera ()
 
 @property (readwrite, assign) BOOL hasPendingOperation;
 
 @end
 
-@implementation CDVCamera
+@implementation _CDVCamera
 
 + (void)initialize
 {
@@ -140,11 +140,11 @@ static NSString* toBase64(NSData* data) {
 {
     self.hasPendingOperation = YES;
     
-    __weak CDVCamera* weakSelf = self;
+    __weak _CDVCamera* weakSelf = self;
 
     [self.commandDelegate runInBackground:^{
         
-        CDVPictureOptions* pictureOptions = [CDVPictureOptions createFromTakePictureArguments:command];
+        _CDVPictureOptions* pictureOptions = [_CDVPictureOptions createFromTakePictureArguments:command];
         pictureOptions.popoverSupported = [weakSelf popoverSupported];
         pictureOptions.usesGeolocation = [weakSelf usesGeolocation];
         pictureOptions.cropToSize = NO;
@@ -182,7 +182,7 @@ static NSString* toBase64(NSData* data) {
             }
         }
 
-        CDVCameraPicker* cameraPicker = [CDVCameraPicker createFromPictureOptions:pictureOptions];
+        _CDVCameraPicker* cameraPicker = [_CDVCameraPicker createFromPictureOptions:pictureOptions];
         weakSelf.pickerController = cameraPicker;
         
         cameraPicker.delegate = weakSelf;
@@ -344,7 +344,7 @@ static NSString* toBase64(NSData* data) {
     self.hasPendingOperation = NO;
 }
 
-- (NSData*)processImage:(UIImage*)image info:(NSDictionary*)info options:(CDVPictureOptions*)options
+- (NSData*)processImage:(UIImage*)image info:(NSDictionary*)info options:(_CDVPictureOptions*)options
 {
     NSData* data = nil;
     
@@ -402,7 +402,7 @@ static NSString* toBase64(NSData* data) {
     return filePath;
 }
 
-- (UIImage*)retrieveImage:(NSDictionary*)info options:(CDVPictureOptions*)options
+- (UIImage*)retrieveImage:(NSDictionary*)info options:(_CDVPictureOptions*)options
 {
     // get the image
     UIImage* image = nil;
@@ -430,7 +430,7 @@ static NSString* toBase64(NSData* data) {
     return (scaledImage == nil ? image : scaledImage);
 }
 
-- (void)resultForImage:(CDVPictureOptions*)options info:(NSDictionary*)info completion:(void (^)(CDVPluginResult* res))completion
+- (void)resultForImage:(_CDVPictureOptions*)options info:(NSDictionary*)info completion:(void (^)(CDVPluginResult* res))completion
 {
     CDVPluginResult* result = nil;
     BOOL saveToPhotoAlbum = options.saveToPhotoAlbum;
@@ -511,8 +511,8 @@ static NSString* toBase64(NSData* data) {
 
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingMediaWithInfo:(NSDictionary*)info
 {
-    __weak CDVCameraPicker* cameraPicker = (CDVCameraPicker*)picker;
-    __weak CDVCamera* weakSelf = self;
+    __weak _CDVCameraPicker* cameraPicker = (_CDVCameraPicker*)picker;
+    __weak _CDVCamera* weakSelf = self;
     
     dispatch_block_t invoke = ^(void) {
         __block CDVPluginResult* result = nil;
@@ -553,8 +553,8 @@ static NSString* toBase64(NSData* data) {
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker
 {
-    __weak CDVCameraPicker* cameraPicker = (CDVCameraPicker*)picker;
-    __weak CDVCamera* weakSelf = self;
+    __weak _CDVCameraPicker* cameraPicker = (_CDVCameraPicker*)picker;
+    __weak _CDVCamera* weakSelf = self;
     
     dispatch_block_t invoke = ^ (void) {
         CDVPluginResult* result;
@@ -660,7 +660,7 @@ static NSString* toBase64(NSData* data) {
 
 - (void)imagePickerControllerReturnImageResult
 {
-    CDVPictureOptions* options = self.pickerController.pictureOptions;
+    _CDVPictureOptions* options = self.pickerController.pictureOptions;
     CDVPluginResult* result = nil;
     
     if (self.metadata) {
@@ -718,7 +718,7 @@ static NSString* toBase64(NSData* data) {
 
 @end
 
-@implementation CDVCameraPicker
+@implementation _CDVCameraPicker
 
 - (BOOL)prefersStatusBarHidden
 {
@@ -740,9 +740,9 @@ static NSString* toBase64(NSData* data) {
     [super viewWillAppear:animated];
 }
 
-+ (instancetype) createFromPictureOptions:(CDVPictureOptions*)pictureOptions;
++ (instancetype) createFromPictureOptions:(_CDVPictureOptions*)pictureOptions;
 {
-    CDVCameraPicker* cameraPicker = [[CDVCameraPicker alloc] init];
+    _CDVCameraPicker* cameraPicker = [[_CDVCameraPicker alloc] init];
     cameraPicker.pictureOptions = pictureOptions;
     cameraPicker.sourceType = pictureOptions.sourceType;
     cameraPicker.allowsEditing = pictureOptions.allowsEditing;

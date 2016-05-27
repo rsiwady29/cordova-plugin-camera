@@ -17,7 +17,7 @@
  under the License.
  */
 
-#import "UIImage+CropScaleOrientation.h"
+#import "_UIImage+CropScaleOrientation.h"
 
 @implementation UIImage (CropScaleOrientation)
 

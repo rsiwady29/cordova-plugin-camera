@@ -42,7 +42,7 @@ enum CDVMediaType {
 };
 typedef NSUInteger CDVMediaType;
 
-@interface CDVPictureOptions : NSObject
+@interface _CDVPictureOptions : NSObject
 
 @property (strong) NSNumber* quality;
 @property (assign) CDVDestinationType destinationType;
@@ -64,9 +64,9 @@ typedef NSUInteger CDVMediaType;
 
 @end
 
-@interface CDVCameraPicker : UIImagePickerController
+@interface _CDVCameraPicker : UIImagePickerController
 
-@property (strong) CDVPictureOptions* pictureOptions;
+@property (strong) _CDVPictureOptions* pictureOptions;
 
 @property (copy)   NSString* callbackId;
 @property (copy)   NSString* postUrl;
@@ -74,19 +74,19 @@ typedef NSUInteger CDVMediaType;
 @property (assign) BOOL cropToSize;
 @property (strong) UIView* webView;
 
-+ (instancetype) createFromPictureOptions:(CDVPictureOptions*)options;
++ (instancetype) createFromPictureOptions:(_CDVPictureOptions*)options;
 
 @end
 
 // ======================================================================= //
 
-@interface CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
+@interface _CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
                        UINavigationControllerDelegate,
                        UIPopoverControllerDelegate,
                        CLLocationManagerDelegate>
 {}
 
-@property (strong) CDVCameraPicker* pickerController;
+@property (strong) _CDVCameraPicker* pickerController;
 @property (strong) NSMutableDictionary *metadata;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong) NSData* data;
