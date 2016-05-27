@@ -19,7 +19,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface _CDVJpegHeaderWriter : NSObject {
+@interface CDVJpegHeaderWriter : NSObject {
     NSDictionary * SubIFDTagFormatDict;
     NSDictionary * IFD0TagFormatDict;
 }

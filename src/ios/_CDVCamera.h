@@ -42,34 +42,51 @@ enum CDVMediaType {
 };
 typedef NSUInteger CDVMediaType;
 
-@interface _CDVCameraPicker : UIImagePickerController
-{}
+@interface CDVPictureOptions : NSObject
 
-@property (assign) NSInteger quality;
-@property (copy)   NSString* callbackId;
-@property (copy)   NSString* postUrl;
-@property (nonatomic) enum CDVDestinationType returnType;
-@property (nonatomic) enum CDVEncodingType encodingType;
-@property (strong) UIPopoverController* popoverController;
+@property (strong) NSNumber* quality;
+@property (assign) CDVDestinationType destinationType;
+@property (assign) UIImagePickerControllerSourceType sourceType;
 @property (assign) CGSize targetSize;
-@property (assign) bool correctOrientation;
-@property (assign) bool saveToPhotoAlbum;
-@property (assign) bool cropToSize;
-@property (strong) UIView* webView;
+@property (assign) CDVEncodingType encodingType;
+@property (assign) CDVMediaType mediaType;
+@property (assign) BOOL allowsEditing;
+@property (assign) BOOL correctOrientation;
+@property (assign) BOOL saveToPhotoAlbum;
+@property (strong) NSDictionary* popoverOptions;
+@property (assign) UIImagePickerControllerCameraDevice cameraDirection;
+
 @property (assign) BOOL popoverSupported;
 @property (assign) BOOL usesGeolocation;
+@property (assign) BOOL cropToSize;
+
++ (instancetype) createFromTakePictureArguments:(CDVInvokedUrlCommand*)command;
+
+@end
+
+@interface CDVCameraPicker : UIImagePickerController
+
+@property (strong) CDVPictureOptions* pictureOptions;
+
+@property (copy)   NSString* callbackId;
+@property (copy)   NSString* postUrl;
+@property (strong) UIPopoverController* pickerPopoverController;
+@property (assign) BOOL cropToSize;
+@property (strong) UIView* webView;
+
++ (instancetype) createFromPictureOptions:(CDVPictureOptions*)options;
 
 @end
 
 // ======================================================================= //
 
-@interface _CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
+@interface CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
                        UINavigationControllerDelegate,
                        UIPopoverControllerDelegate,
                        CLLocationManagerDelegate>
 {}
 
-@property (strong) _CDVCameraPicker* pickerController;
+@property (strong) CDVCameraPicker* pickerController;
 @property (strong) NSMutableDictionary *metadata;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong) NSData* data;
@@ -92,9 +109,6 @@ typedef NSUInteger CDVMediaType;
 - (void)imagePickerController:(UIImagePickerController*)picker didFinishPickingImage:(UIImage*)image editingInfo:(NSDictionary*)editingInfo;
 - (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker;
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated;
-- (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize;
-- (UIImage*)imageByScalingNotCroppingForSize:(UIImage*)anImage toSize:(CGSize)frameSize;
-- (UIImage*)imageCorrectedForCaptureOrientation:(UIImage*)anImage;
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateToLocation:(CLLocation*)newLocation fromLocation:(CLLocation*)oldLocation;
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error;

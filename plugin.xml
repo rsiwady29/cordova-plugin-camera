@@ -127,6 +127,8 @@
             <clobbers target="updatedCameraPopoverHandle" />
          </js-module>
 
+         <header-file src="src/ios/_UIImage+CropScaleOrientation.h" />
+         <source-file src="src/ios/_UIImage+CropScaleOrientation.m" />
          <header-file src="src/ios/_CDVCamera.h" />
          <source-file src="src/ios/_CDVCamera.m" />
          <header-file src="src/ios/_CDVJpegHeaderWriter.h" />
@@ -138,6 +140,7 @@
          <framework src="AssetsLibrary.framework" />
          <framework src="MobileCoreServices.framework" />
          <framework src="CoreGraphics.framework" />
+         <framework src="AVFoundation.framework" />
 
          <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
              <string></string>
