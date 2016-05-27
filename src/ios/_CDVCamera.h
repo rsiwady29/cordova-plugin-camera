@@ -42,7 +42,7 @@ enum CDVMediaType {
 };
 typedef NSUInteger CDVMediaType;
 
-@interface CDVCameraPicker : UIImagePickerController
+@interface _CDVCameraPicker : UIImagePickerController
 {}
 
 @property (assign) NSInteger quality;
@@ -63,13 +63,13 @@ typedef NSUInteger CDVMediaType;
 
 // ======================================================================= //
 
-@interface CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
+@interface _CDVCamera : CDVPlugin <UIImagePickerControllerDelegate,
                        UINavigationControllerDelegate,
                        UIPopoverControllerDelegate,
                        CLLocationManagerDelegate>
 {}
 
-@property (strong) CDVCameraPicker* pickerController;
+@property (strong) _CDVCameraPicker* pickerController;
 @property (strong) NSMutableDictionary *metadata;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong) NSData* data;
