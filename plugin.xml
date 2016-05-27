@@ -41,7 +41,7 @@
 
 
     <js-module src="www/Camera.js" name="updatedCamera">
-        <clobbers target="navigator.updatedCamera" />
+        <clobbers target="updatedCamera" />
     </js-module>
 
     <!-- firefoxos -->
