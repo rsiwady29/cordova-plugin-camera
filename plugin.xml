@@ -31,14 +31,12 @@
     <issue>https://issues.apache.org/jira/browse/CB/component/12320645</issue>
 
     <js-module src="www/CameraConstants.js" name="Camera">
-        <clobbers target="Camera" />
+        <clobbers target="updatedCamera" />
     </js-module>
 
     <js-module src="www/CameraPopoverOptions.js" name="CameraPopoverOptions">
-        <clobbers target="CameraPopoverOptions" />
+        <clobbers target="updatedCameraPopoverOptions" />
     </js-module>
-
-
 
     <js-module src="www/Camera.js" name="Camera">
         <clobbers target="navigator.updatedCamera" />
@@ -130,7 +128,7 @@
          </config-file>
 
          <js-module src="www/ios/CameraPopoverHandle.js" name="CameraPopoverHandle">
-            <clobbers target="CameraPopoverHandle" />
+            <clobbers target="updatedCameraPopoverHandle" />
          </js-module>
 
          <header-file src="src/ios/CDVCamera.h" />
