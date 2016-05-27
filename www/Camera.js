@@ -74,7 +74,7 @@ for (var key in Camera) {
  * @param {Function} errorCallback
  * @param {Object} options
  */
-cameraExport.getMagic = function(successCallback, errorCallback, options) {
+cameraExport.getPicture = function(successCallback, errorCallback, options) {
     argscheck.checkArgs('fFO', 'Camera.getPicture', arguments);
     options = options || {};
     var getValue = argscheck.getValue;
