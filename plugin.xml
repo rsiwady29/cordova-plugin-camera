@@ -21,7 +21,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:rim="http://www.blackberry.com/ns/widgets"
-    id="org.apache.cordova.camera"
+    id="org.apache.cordova.updatedcamera"
     version="0.3.3-dev">
     <name>Camera</name>
     <description>Cordova Camera Plugin</description>
@@ -40,8 +40,8 @@
 
 
 
-    <js-module src="www/Camera.js" name="updatedCamera">
-        <clobbers target="updatedCamera" />
+    <js-module src="www/Camera.js" name="Camera">
+        <clobbers target="navigator.updatedCamera" />
     </js-module>
 
     <!-- firefoxos -->
@@ -61,7 +61,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Camera">
-                <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
+                <param name="android-package" value="org.apache.cordova.updatedcamera.CameraLauncher"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
@@ -82,7 +82,7 @@
     <platform name="amazon-fireos">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Camera">
-                <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
+                <param name="android-package" value="org.apache.cordova.updatedcamera.CameraLauncher"/>
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
