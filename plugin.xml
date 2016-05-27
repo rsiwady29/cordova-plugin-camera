@@ -36,7 +36,6 @@
 
     <js-module src="www/Camera.js" name="Camera">
         <clobbers target="navigator.updatedcamera" />
-        <merges target="navigator.camera" />
     </js-module>
 
     <!-- firefoxos -->
