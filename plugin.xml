@@ -40,8 +40,8 @@
 
 
 
-    <js-module src="www/Camera.js" name="camera">
-        <clobbers target="navigator.camera" />
+    <js-module src="www/Camera.js" name="updatedCamera">
+        <clobbers target="navigator.updatedCamera" />
     </js-module>
 
     <!-- firefoxos -->
