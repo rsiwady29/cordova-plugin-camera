@@ -270,7 +270,7 @@ static NSSet* org_apache_cordova_validArrowDirections;
     if ([mediaType isEqualToString:(NSString*)kUTTypeImage]) {
         if (cameraPicker.returnType == DestinationTypeNativeUri) {
             NSString* nativeUri = [(NSURL*)[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
-            result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:nativeUri];
+            result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"native_uri"];
         } else {
             // get the image
             UIImage* image = nil;
