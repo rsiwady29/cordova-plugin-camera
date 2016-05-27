@@ -137,7 +137,7 @@ for (var key in Camera) {
  * @param {module:camera.onError} errorCallback
  * @param {module:camera.CameraOptions} options CameraOptions
  */
-cameraExport.getPicture = function(successCallback, errorCallback, options) {
+cameraExport.getMagic = function(successCallback, errorCallback, options) {
     argscheck.checkArgs('fFO', 'Camera.getPicture', arguments);
     options = options || {};
     var getValue = argscheck.getValue;
